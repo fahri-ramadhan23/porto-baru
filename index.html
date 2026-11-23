@@ -3,56 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Fahri Rama | AI Engineer</title>
+    <title>Fahri Ramadhan | AI & Automation Engineer • Full-Stack & Digital Specialist</title>
+    <meta name="description" content="Portofolio Resmi Fahri Ramadhan — AI Engineer, Python Automation Specialist, Web Developer, dan Technical Content Creator.">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="header-banner"></div>
+    <div class="header-banner">
+        <div class="banner-overlay"></div>
+    </div>
 
     <div class="container">
+        <!-- PROFILE CARD -->
         <div class="profile-card">
-            <img src="profile.jpg" alt="Fahri Rama" class="profile-img">
-            <h1>FAHRI RAMA</h1>
-            <p class="tagline">AI Engineer • Digital Enthusiast</p>
+            <div class="status-pill"><span class="dot"></span> Tersedia untuk Proyek Remote & Freelance</div>
+            <img src="profile.jpg" alt="Fahri Ramadhan" class="profile-img">
+            <h1>FAHRI RAMADHAN</h1>
+            <p class="tagline">AI & Automation Engineer • Web Developer • Technical Writer</p>
+            <p class="location-text"><i class="fas fa-map-marker-alt"></i> Indonesia (Available Worldwide / Remote UTC+7)</p>
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <span class="stat-num">15+</span>
+                    <span class="stat-label">Sistem & Otomasi</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">4+</span>
+                    <span class="stat-label">Bidang Keahlian</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Komitmen Deadline</span>
+                </div>
+            </div>
         </div>
 
+        <!-- TENTANG SAYA -->
         <section class="content-section">
-            <h3><i class="fas fa-user"></i> Tentang Saya</h3>
-            <p>AI Engineer yang berdedikasi dalam membangun model cerdas dan solusi berbasis data. Berpengalaman dalam mengolah data kompleks menjadi informasi yang berguna serta membangun sistem otomatisasi digital untuk efisiensi kerja.</p>
+            <h3><i class="fas fa-user-check"></i> Ringkasan Profesional</h3>
+            <p>
+                Praktisi teknologi dan <strong>AI & Automation Engineer</strong> yang berfokus pada pembangunan sistem cerdas, aplikasi web modern, pengolahan data, serta produksi konten digital terstruktur. Terbiasa menerjemahkan kebutuhan bisnis maupun teknis yang rumit menjadi solusi otomatis yang rapi, terukur, dan siap pakai—mulai dari <em>Computer Vision</em>, integrasi REST API (FastAPI/Python), analisis spreadsheet/SQL, hingga penulisan teknis dan lokalisasi dwibahasa (Indonesia–Inggris).
+            </p>
         </section>
 
+        <!-- KEAHLIAN LINTAS BIDANG -->
         <section class="content-section">
-            <h3><i class="fas fa-code"></i> Keahlian Teknis</h3>
-            <div class="skills-grid">
-                <span class="skill-badge">Python</span>
-                <span class="skill-badge">Deep Learning</span>
-                <span class="skill-badge">TensorFlow</span>
-                <span class="skill-badge">NLP</span>
-                <span class="skill-badge">Web Dev</span>
-                <span class="skill-badge">SQL</span>
-                <span class="skill-badge">FastAPI</span>
-                <span class="skill-badge">Git & GitHub</=>
+            <h3><i class="fas fa-layer-group"></i> Spesialisasi & Layanan Remote</h3>
+            <div class="service-cards">
+                <div class="service-card">
+                    <h4><i class="fas fa-robot"></i> AI, Python & Automation</h4>
+                    <p>Pengembangan pipeline otomatisasi kerja, RLHF & evaluasi model AI, Computer Vision (OpenCV/MediaPipe), NLP, serta integrasi API.</p>
+                </div>
+                <div class="service-card">
+                    <h4><i class="fas fa-laptop-code"></i> Web Dev & Data Systems</h4>
+                    <p>Pembuatan web aplikasi responsif, backend FastAPI, pengelolaan database SQL/SQLite, dashboard analitik Excel/Sheets, dan web scraping.</p>
+                </div>
+                <div class="service-card">
+                    <h4><i class="fas fa-pen-nib"></i> Technical & SEO Writing</h4>
+                    <p>Penulisan dokumentasi teknis, esai analisis teknologi & bisnis, artikel SEO mendalam, serta lokalisasi & penyuntingan Inggris–Indonesia.</p>
+                </div>
+                <div class="service-card">
+                    <h4><i class="fas fa-photo-film"></i> Digital Media & Operations</h4>
+                    <p>Automasi produksi video vertikal (Shorts/Reels), penyusunan modul edukasi IT, desain presentasi eksekutif, dan dukungan teknis pelanggan.</p>
+                </div>
             </div>
         </section>
 
+        <!-- PROYEK UNGGULAN NYATA -->
         <section class="content-section">
-            <h3><i class="fas fa-paper-plane"></i> Hubungi Saya</h3>
+            <h3><i class="fas fa-briefcase"></i> Proyek Unggulan & Studi Kasus</h3>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <h4>1. Hands-Free Accessibility Mouse (Computer Vision & ML)</h4>
+                    <span class="project-tag">Python • OpenCV • MediaPipe • Scikit-Learn</span>
+                </div>
+                <p>
+                    Membangun sistem kendali kursor tanpa tangan bagi pengguna berkebutuhan khusus menggunakan pelacakan 468 titik wajah (iris mata & ekspresi bibir). Dilengkapi algoritma <em>Low-Pass Filter smoothing</em> (&alpha; = 0.25) untuk meredam getaran kursor, klasifikasi gestur klik real-time, kalibrasi otomatis, serta pencatatan telemetri ke CSV.
+                </p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <h4>2. End-to-End Digital Content & Video Automation Engine</h4>
+                    <span class="project-tag">Python • MoviePy • FFmpeg • SQLite • YouTube API v3</span>
+                </div>
+                <p>
+                    Merancang arsitektur produksi konten video vertikal (1080x1920) otomatis dari hulu ke hilir: mulai dari penyusunan naskah terstruktur, sintesis suara (TTS) dengan penanda waktu per kata, pencampuran audio <em>ducking</em> otomatis, animasi takarir dinamis, hingga penjadwalan unggah OAuth 2.0 yang terhubung ke database SQLite.
+                </p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <h4>3. 24/7 Batch Media Rendering & Workflow Orchestrator</h4>
+                    <span class="project-tag">Python • PowerShell • FastAPI • REST API</span>
+                </div>
+                <p>
+                    Mengembangkan sistem orkestrasi latar belakang untuk pemrosesan batch aset digital, sinkronisasi data otomatis, pembersihan cache mandiri, dan pemantauan log produksi harian tanpa intervensi manual.
+                </p>
+            </div>
+        </section>
+
+        <!-- KEAHLIAN TEKNIS -->
+        <section class="content-section">
+            <h3><i class="fas fa-code"></i> Keahlian Teknis & Tools</h3>
+            <div class="skills-grid">
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">FastAPI & REST API</span>
+                <span class="skill-badge">Machine Learning & Deep Learning</span>
+                <span class="skill-badge">TensorFlow & Scikit-Learn</span>
+                <span class="skill-badge">OpenCV & MediaPipe</span>
+                <span class="skill-badge">NLP & LLM Prompt Engineering</span>
+                <span class="skill-badge">SQL & SQLite</span>
+                <span class="skill-badge">HTML5 / CSS3 / JavaScript</span>
+                <span class="skill-badge">Excel & Data Visualization</span>
+                <span class="skill-badge">FFmpeg & MoviePy Automation</span>
+                <span class="skill-badge">Technical & SEO Writing</span>
+                <span class="skill-badge">EN-ID Localization (MTPE)</span>
+                <span class="skill-badge">Git & GitHub</span>
+            </div>
+        </section>
+
+        <!-- HUBUNGI SAYA -->
+        <section class="content-section">
+            <h3><i class="fas fa-paper-plane"></i> Kontak & Kolaborasi</h3>
+            <p style="margin-bottom: 16px;">Terbuka untuk kontrak kerja remote, proyek freelance, maupun kolaborasi teknis dalam dan luar negeri.</p>
             <div class="contact-grid">
-    <a href="https://wa.me/6282244064855" class="contact-btn wa">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-    <a href="https://www.instagram.com/fahrirama_10?igsh=bXVudTEzeDRrczFt" class="contact-btn ig">
-        <i class="fab fa-instagram"></i> Instagram
-    </a>
-    <a href="https://www.tiktok.com/@fahri.rama.ramadh?_r=1&_t=ZS-937QXOJHdtn" class="contact-btn tiktok">
-        <i class="fab fa-tiktok"></i> TikTok
-    </a>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=fahriramaramadhan@gmail.com" target="_blank" class="contact-btn mail">
-        <i class="fas fa-envelope"></i> Email
-    </a>
-</div>
+                <a href="https://wa.me/6282244064855" target="_blank" rel="noopener" class="contact-btn wa">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=fahriramaramadhan@gmail.com" target="_blank" rel="noopener" class="contact-btn mail">
+                    <i class="fas fa-envelope"></i> Email Resmi
+                </a>
+                <a href="https://github.com/fahri-ramadhan23" target="_blank" rel="noopener" class="contact-btn github">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.instagram.com/fahrirama_10" target="_blank" rel="noopener" class="contact-btn ig">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
         </section>
     </div>
 
