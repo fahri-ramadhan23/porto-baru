@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Permata Kasih Anugerah — Company Profile & Katalog Tenaga Kerja</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Inter, sans-serif; }
+        body { background: #f8fafc; color: #0f172a; }
+        header { background: #1e3a8a; color: #fff; padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; }
+        .hero { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; padding: 44px 32px; text-align: center; }
+        .wrap { max-width: 1100px; margin: 28px auto; padding: 0 20px; }
+        .filter-bar { display: flex; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+        .filter-bar input, .filter-bar select { padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; flex: 1; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+        .worker-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        .badge { background: #dcfce7; color: #166534; font-size: 0.76rem; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
+        .wa-btn { display: inline-block; margin-top: 14px; width: 100%; text-align: center; background: #16a34a; color: #fff; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>PT PERMATA KASIH ANUGERAH</h2>
+        <nav style="font-size:0.9rem;">Beranda &nbsp;|&nbsp; Tentang Kami &nbsp;|&nbsp; Katalog Tenaga Kerja &nbsp;|&nbsp; Hubungi Kami</nav>
+    </header>
+    <div class="hero">
+        <h1>Solusi Penyaluran & Manajemen Tenaga Kerja Profesional Terpercaya</h1>
+        <p style="margin-top:8px;opacity:0.9;">Prototipe Website Company Profile & Katalog Kandidat Interaktif — Disiapkan oleh Moh Fahri Ramadhan</p>
+    </div>
+    <div class="wrap">
+        <h2 style="margin-bottom:14px;">Katalog Tenaga Kerja Siap Penempatan (Live Filter Prototype)</h2>
+        <div class="filter-bar">
+            <input type="text" id="q" placeholder="Cari nama kandidat, keahlian, atau kota asal..." onkeyup="filterCards()">
+            <select id="cat" onchange="filterCards()">
+                <option value="">Semua Kategori Profesi</option>
+                <option value="Caregiver / Perawat Lansia">Caregiver / Perawat Lansia</option>
+                <option value="Baby Sitter & Nanny">Baby Sitter & Nanny</option>
+                <option value="Asisten Rumah Tangga">Asisten Rumah Tangga</option>
+            </select>
+        </div>
+        <div class="grid" id="workerGrid">
+            <div class="worker-card" data-cat="Caregiver / Perawat Lansia">
+                <span class="badge">Siap Kerja • Terverifikasi</span>
+                <h3 style="margin-top:10px;">Siti Rahmawati (27 Thn)</h3>
+                <p style="color:#2563eb;font-weight:600;font-size:0.88rem;">Caregiver / Perawat Lansia</p>
+                <p style="font-size:0.86rem;color:#475569;margin-top:8px;">Pengalaman 4 tahun merawat lansia pasca-stroke, cek tensi/gula darah, sabar, dan bersertifikat pelatihan LPK.</p>
+                <a href="https://wa.me/6282244064855?text=Halo%20PT%20Permata%20Kasih%20Anugerah,%20saya%20tertarik%20dengan%20kandidat%20Siti%20Rahmawati" class="wa-btn">Tanya Kandidat via WhatsApp</a>
+            </div>
+            <div class="worker-card" data-cat="Baby Sitter & Nanny">
+                <span class="badge">Siap Kerja • Terverifikasi</span>
+                <h3 style="margin-top:10px;">Dewi Lestari (24 Thn)</h3>
+                <p style="color:#2563eb;font-weight:600;font-size:0.88rem;">Baby Sitter & Nanny</p>
+                <p style="font-size:0.86rem;color:#475569;margin-top:8px;">Pengalaman 3 tahun mengasuh bayi baru lahir (newborn) & balita, menyiapkan MPASI, dan higienis.</p>
+                <a href="https://wa.me/6282244064855?text=Halo%20PT%20Permata%20Kasih%20Anugerah,%20saya%20tertarik%20dengan%20kandidat%20Dewi%20Lestari" class="wa-btn">Tanya Kandidat via WhatsApp</a>
+            </div>
+            <div class="worker-card" data-cat="Asisten Rumah Tangga">
+                <span class="badge">Siap Kerja • Terverifikasi</span>
+                <h3 style="margin-top:10px;">Nurhayati (31 Thn)</h3>
+                <p style="color:#2563eb;font-weight:600;font-size:0.88rem;">Asisten Rumah Tangga</p>
+                <p style="font-size:0.86rem;color:#475569;margin-top:8px;">Terampil memasak masakan Nusantara, menjaga kerapian rumah, setrika, dan jujur.</p>
+                <a href="https://wa.me/6282244064855?text=Halo%20PT%20Permata%20Kasih%20Anugerah,%20saya%20tertarik%20dengan%20kandidat%20Nurhayati" class="wa-btn">Tanya Kandidat via WhatsApp</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function filterCards() {
+            var q = document.getElementById('q').value.toLowerCase();
+            var cat = document.getElementById('cat').value;
+            var cards = document.querySelectorAll('.worker-card');
+            cards.forEach(function(c) {
+                var matchQ = c.innerText.toLowerCase().indexOf(q) > -1;
+                var matchCat = !cat || c.getAttribute('data-cat') === cat;
+                c.style.display = (matchQ && matchCat) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Demo: WordPress Discovery & Technology Scanner — Moh Fahri Ramadhan</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Inter, sans-serif; }
+        body { background: #0f172a; color: #f8fafc; padding: 26px; }
+        .wrap { max-width: 1120px; margin: 0 auto; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 20px 24px; border-radius: 14px; margin-bottom: 20px; border: 1px solid #334155; }
+        .badge { background: #10b981; color: #052e16; padding: 4px 12px; border-radius: 99px; font-weight: 700; font-size: 0.8rem; }
+        .grid-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+        .stat-box { background: #1e293b; padding: 18px; border-radius: 12px; border: 1px solid #334155; }
+        .stat-box h4 { color: #94a3b8; font-size: 0.82rem; margin-bottom: 6px; }
+        .stat-box .num { font-size: 1.55rem; font-weight: 800; color: #38bdf8; }
+        .card { background: #1e293b; padding: 22px; border-radius: 14px; border: 1px solid #334155; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 0.88rem; }
+        th, td { padding: 11px 12px; text-align: left; border-bottom: 1px solid #334155; }
+        th { color: #94a3b8; background: #0f172a; }
+        .tag-wp { background: rgba(16,185,129,0.18); color: #34d399; padding: 3px 8px; border-radius: 6px; font-weight: 600; }
+        .tag-warn { background: rgba(245,158,11,0.2); color: #fbbf24; padding: 3px 8px; border-radius: 6px; font-weight: 600; }
+        .btn { background: #3b82f6; color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="top-bar">
+            <div>
+                <h2>WordPress Discovery & Technology Scanner (MVP Prototype)</h2>
+                <p style="color:#94a3b8;font-size:0.88rem;">Developed by Moh Fahri Ramadhan (Python + SQLite Single-VPS Architecture — No Microservices)</p>
+            </div>
+            <span class="badge">Live Interactive Prototype</span>
+        </div>
+
+        <div class="grid-stats">
+            <div class="stat-box"><h4>Total Domains Scanned</h4><div class="num">1,240</div></div>
+            <div class="stat-box"><h4>WordPress Detected</h4><div class="num" style="color:#34d399;">842 (67.9%)</div></div>
+            <div class="stat-box"><h4>Outdated Core / Plugin Advisory</h4><div class="num" style="color:#fbbf24;">194</div></div>
+            <div class="stat-box"><h4>Batch Rate & Delay</h4><div class="num" style="font-size:1.15rem;">25 dom/batch • 1.5s</div></div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <h3>Hasil Pemindaian Teknologi & Keamanan Non-Intrusif (Sample Output)</h3>
+                <button class="btn" onclick="alert('File CSV siap diunduh dari endpoint /export-csv pada aplikasi Python!')">Export Filtered CSV</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Domain</th>
+                        <th>HTTP</th>
+                        <th>CMS</th>
+                        <th>WP Core</th>
+                        <th>Active Theme</th>
+                        <th>Public Plugins Detected</th>
+                        <th>Server</th>
+                        <th>Non-Intrusive Security Advisory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>contoh-toko-herbal.co.id</strong></td>
+                        <td>200</td>
+                        <td><span class="tag-wp">WordPress</span></td>
+                        <td>6.1.4</td>
+                        <td>astra</td>
+                        <td>woocommerce, elementor, contact-form-7</td>
+                        <td>nginx/1.24.0</td>
+                        <td><span class="tag-warn">Update Core < 6.4 & Check CF7 Version</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>kliniksehatmandiri.id</strong></td>
+                        <td>200</td>
+                        <td><span class="tag-wp">WordPress</span></td>
+                        <td>6.6.2</td>
+                        <td>generatepress</td>
+                        <td>yoast-seo, wpforms-lite, litespeed-cache</td>
+                        <td>LiteSpeed</td>
+                        <td>OK — Core Up-to-Date</td>
+                    </tr>
+                    <tr>
+                        <td><strong>konstruksijayabaru.com</strong></td>
+                        <td>200</td>
+                        <td><span class="tag-wp">WordPress</span></td>
+                        <td>5.8.9</td>
+                        <td>divi</td>
+                        <td>revslider, js_composer</td>
+                        <td>Apache</td>
+                        <td><span class="tag-warn">Outdated WP 5.8.x — High Priority Update</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

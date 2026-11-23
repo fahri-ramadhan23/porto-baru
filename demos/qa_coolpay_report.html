@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>QA Test Case Matrix & Exploratory Bug Report — Coolpay.id (Moh Fahri Ramadhan)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Inter, sans-serif; }
+        body { background: #f8fafc; color: #0f172a; padding: 28px; line-height: 1.55; }
+        .wrap { max-width: 1120px; margin: 0 auto; background: #fff; padding: 28px; border-radius: 14px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
+        h1 { font-size: 1.45rem; margin-bottom: 6px; color: #1e293b; }
+        .meta { color: #475569; font-size: 0.9rem; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid #e2e8f0; }
+        h2 { font-size: 1.15rem; margin: 20px 0 10px; color: #1d4ed8; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.86rem; margin-bottom: 18px; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; }
+        th { background: #f1f5f9; font-weight: 700; }
+        .sev-high { background: #fee2e2; color: #991b1b; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+        .sev-med { background: #fef3c7; color: #92400e; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>Dokumen Sampel QA Test Case & Bug Report — Platform Pembayaran Coolpay.id</h1>
+        <div class="meta">
+            <strong>QA Engineer:</strong> Moh Fahri Ramadhan (fahriramaramadhan@gmail.com / WA 082244064855) | <strong>Metode:</strong> Manual Functional, Boundary Value & Negative Exploratory Testing
+        </div>
+
+        <h2>1. Matriks Test Case Utama (Auth, Merchant Dashboard, Status Transaksi & Negative Scenarios)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>TC ID</th>
+                    <th>Modul</th>
+                    <th>Skenario Pengujian</th>
+                    <th>Langkah Uji (Steps)</th>
+                    <th>Expected Result</th>
+                    <th>Prioritas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TC-PAY-01</strong></td>
+                    <td>Payment Creation (Negative)</td>
+                    <td>Double-click tombol "Buat Transaksi / Bayar" saat koneksi lambat (3G throttling)</td>
+                    <td>1. Isi nominal Rp150.000.<br>2. Aktifkan Slow 3G di DevTools.<br>3. Klik tombol Submit 3x berturut-turut dalam 1 detik.</td>
+                    <td>Tombol otomatis disabled saat request pertama dikirim; sistem hanya membuat 1 Invoice ID unik (idempotency terjaga, tidak ada transaksi ganda).</td>
+                    <td><span class="sev-high">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-PAY-02</strong></td>
+                    <td>Status Lifecycle</td>
+                    <td>Transisi status <code>Pending</code> ke <code>Kedaluwarsa (Expired)</code> melewati batas waktu bayar</td>
+                    <td>1. Buat transaksi VA/QRIS dengan masa aktif 15 menit.<br>2. Biarkan melewati batas waktu tanpa pembayaran.<br>3. Refresh halaman detail & riwayat merchant.</td>
+                    <td>Status berubah otomatis menjadi <code>Kedaluwarsa</code>, kode bayar tidak lagi aktif, dan saldo merchant tidak bertambah.</td>
+                    <td><span class="sev-high">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-PAY-03</strong></td>
+                    <td>Input Validation (Negative)</td>
+                    <td>Input nominal negatif, desimal tidak wajar, atau karakter spesial pada form pembuatan tagihan</td>
+                    <td>1. Masukkan nominal <code>-50000</code>, <code>0</code>, dan <code>999999999999</code>.<br>2. Submit form.</td>
+                    <td>Validasi frontend & backend menolak request (HTTP 400/422) dengan pesan error bahasa Indonesia yang jelas.</td>
+                    <td><span class="sev-high">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-AUTH-04</strong></td>
+                    <td>Role Permission (IDOR Check)</td>
+                    <td>Merchant A mengakses URL detail transaksi milik Merchant B</td>
+                    <td>1. Login sebagai Merchant A.<br>2. Ganti parameter ID transaksi di URL dengan ID milik Merchant B.</td>
+                    <td>Sistem menolak akses (HTTP 403 Forbidden / 404) dan tidak membocorkan data pelanggan Merchant B.</td>
+                    <td><span class="sev-high">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-FEE-05</strong></td>
+                    <td>Fee & Settlement Math</td>
+                    <td>Verifikasi perhitungan biaya layanan (MDR/Fee) pada riwayat transaksi</td>
+                    <td>1. Buat transaksi Rp100.000 dengan fee 0.7% (QRIS) atau flat Rp4.000 (VA).<br>2. Cek tabel Riwayat & Net Settlement.</td>
+                    <td>Nominal Gross, potongan Fee, dan Net Settlement konsisten di halaman detail, tabel riwayat, dan file ekspor laporan.</td>
+                    <td><span class="sev-med">Medium</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Contoh Format Laporan Bug (Standard Structured Bug Report)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bug ID</th>
+                    <th>Judul & Ringkasan</th>
+                    <th>Steps to Reproduce</th>
+                    <th>Expected vs Actual Result</th>
+                    <th>Severity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>BUG-CP-001</strong></td>
+                    <td>Refresh halaman pada saat popup QRIS terbuka memicu duplikasi record berstatus <code>Pending</code> di Riwayat Transaksi</td>
+                    <td>1. Masuk ke Dashboard Merchant -> Buat Tagihan Baru.<br>2. Pilih metode QRIS, klik Lanjutkan.<br>3. Saat QR muncul, tekan <code>F5</code> (Refresh browser).</td>
+                    <td><strong>Expected:</strong> Halaman memuat ulang invoice yang sama.<br><strong>Actual:</strong> Sistem men-trigger POST ulang dan membuat row transaksi kedua dengan nominal sama.</td>
+                    <td><span class="sev-high">High</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

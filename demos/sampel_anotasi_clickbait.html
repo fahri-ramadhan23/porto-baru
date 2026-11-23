@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Sampel Anotasi Clickbait vs Non-Clickbait Judul Berita Indonesia — Moh Fahri Ramadhan</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #0f172a; padding: 26px; }
+        .wrap { max-width: 1020px; margin: 0 auto; background: #fff; padding: 26px; border-radius: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 0.88rem; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; }
+        th { background: #1e293b; color: #fff; }
+        .cb { background: #fee2e2; color: #991b1b; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+        .ncb { background: #dcfce7; color: #166534; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>Sampel Pelabelan Dataset Judul Berita Bahasa Indonesia (Clickbait vs Non-Clickbait)</h2>
+        <p style="color:#475569;margin-top:4px;">Anotator: <strong>Moh Fahri Ramadhan</strong> (Praktisi NLP & Bahasa Indonesia) — Disiapkan untuk proyek penelitian skripsi Informatika <strong>mutiarahasanah</strong>.</p>
+        <table>
+            <thead>
+                <tr><th>No</th><th>Judul Berita Bahasa Indonesia</th><th>Label Anotasi</th><th>Indikator Linguistik (Alasan Pelabelan)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>"Sering Dianggap Sepele, Kebiasaan Pagi Ini Ternyata Bisa Merusak Ginjal Anda! Nomor 3 Paling Sering Dilakukan"</td>
+                    <td><span class="cb">CLICKBAIT</span></td>
+                    <td>Menggunakan <em>forward-reference</em> ("Kebiasaan Pagi Ini", "Nomor 3") yang sengaja menahan informasi inti (<em>curiosity gap</em>) dan tanda seru hiperbolis.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>"Bank Indonesia Pertahankan Suku Bunga Acuan BI-Rate di Level 6,00 Persen pada Rapat November"</td>
+                    <td><span class="ncb">NON-CLICKBAIT</span></td>
+                    <td>Judul informatif langsung memuat subjek, predikat, dan fakta utama (angka 6,00%) tanpa menyembunyikan informasi kunci.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>"Detik-Detik Mengejutkan Saat Warga Pasuruan Temukan Benda Misterius di Belakang Rumah, Isinya Bikin Merinding!"</td>
+                    <td><span class="cb">CLICKBAIT</span></td>
+                    <td>Penggunaan diksi sensasional ("Mengejutkan", "Benda Misterius", "Bikin Merinding!") tanpa menyebutkan objek faktualnya di judul.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>"Kementerian Perhubungan Siapkan 420 Bus Mudik Gratis untuk Rute Jawa Tengah dan Jawa Timur"</td>
+                    <td><span class="ncb">NON-CLICKBAIT</span></td>
+                    <td>Memenuhi unsur jurnalistik 5W+1H secara lugas (Siapa: Kemenhub, Apa: 420 Bus Mudik Gratis, Ke mana: Jateng & Jatim).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

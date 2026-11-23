@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoSpecsAPI — Lightweight SEO Car Specifications Portal & RapidAPI Backend Demo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Inter, sans-serif; }
+        body { background: #0b0f19; color: #e2e8f0; padding: 28px; }
+        .wrap { max-width: 1080px; margin: 0 auto; }
+        .hero { background: #111827; border: 1px solid #1f2937; padding: 24px; border-radius: 14px; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .card { background: #111827; border: 1px solid #1f2937; padding: 20px; border-radius: 12px; }
+        pre { background: #030712; color: #34d399; padding: 14px; border-radius: 8px; overflow-x: auto; font-size: 0.83rem; margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.88rem; }
+        th, td { padding: 8px 10px; border-bottom: 1px solid #1f2937; text-align: left; }
+        .pill { background: #2563eb; color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="hero">
+            <span class="pill">100% Pure Semantic HTML/CSS (No React/Next.js) • RapidAPI Ready</span>
+            <h1 style="margin-top:10px;font-size:1.5rem;">Car Specifications REST API & Ultra-Fast SEO Frontend</h1>
+            <p style="color:#94a3b8;font-size:0.9rem;margin-top:6px;">Arsitektur: Python FastAPI + SQLite Indexed Engine (< 8ms response time) + Static/SSR Semantic HTML5 dengan Schema.org JSON-LD untuk skor Google PageSpeed 100/100.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>1. Contoh Halaman Spesifikasi Ramah SEO (Server-Rendered HTML)</h3>
+                <table>
+                    <tr><th>Brand & Model</th><td>Toyota Innova Zenix 2.0 Q HV CVT TSS</td></tr>
+                    <tr><th>Engine Code & Type</th><td>M20A-FXS 1,987 cc 4-Cyl In-Line 16-Valve DOHC + Hybrid</td></tr>
+                    <tr><th>Combined Horsepower</th><td>186 PS (Engine 152 PS @ 6,000 rpm + Motor 113 PS)</td></tr>
+                    <tr><th>Torque</th><td>187.3 Nm @ 4,400–5,200 rpm (Engine) + 205.9 Nm (Motor)</td></tr>
+                    <tr><th>Dimensions (L x W x H)</th><td>4,755 x 1,850 x 1,795 mm • Wheelbase 2,850 mm</td></tr>
+                    <tr><th>Battery & Fuel</th><td>Ni-MH Hybrid Battery • 52 Liters Fuel Tank</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <h3>2. Contoh Response JSON Endpoint RapidAPI (<code>GET /v1/cars/specs</code>)</h3>
+                <pre>{
+  "status": "success",
+  "data": {
+    "id": "tyt-zenix-2026-q-hv",
+    "make": "Toyota",
+    "model": "Kijang Innova Zenix",
+    "trim": "2.0 Q HV CVT TSS",
+    "year": 2026,
+    "engine": {
+      "code": "M20A-FXS",
+      "displacement_cc": 1987,
+      "power_ps": 186,
+      "torque_nm": 205.9,
+      "fuel_system": "Hybrid Electric (HEV)"
+    },
+    "dimensions_mm": {"length": 4755, "width": 1850, "height": 1795}
+  }
+}</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
