@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Eliminate Cursor Jitter in Real-Time Python Computer Vision Apps — Moh Fahri Ramadhan</title>
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0b0f19; color: #e2e8f0; line-height: 1.75; padding: 36px 18px; }
+        article { max-width: 760px; margin: 0 auto; background: #111827; border: 1px solid #1f2937; padding: 38px; border-radius: 16px; }
+        h1 { font-size: 1.85rem; color: #f8fafc; line-height: 1.3; margin-bottom: 10px; }
+        .byline { color: #94a3b8; font-size: 0.9rem; margin-bottom: 26px; padding-bottom: 18px; border-bottom: 1px solid #1f2937; }
+        .byline a { color: #818cf8; text-decoration: none; font-weight: 600; }
+        h2 { font-size: 1.3rem; color: #38bdf8; margin: 28px 0 12px; }
+        p { margin-bottom: 16px; color: #cbd5e1; }
+        pre { background: #030712; color: #34d399; padding: 18px; border-radius: 10px; overflow-x: auto; font-size: 0.86rem; line-height: 1.55; margin: 18px 0; border: 1px solid #1e293b; }
+        code { font-family: 'Consolas', 'Fira Code', monospace; }
+        ul { padding-left: 22px; margin-bottom: 18px; color: #cbd5e1; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>How to Eliminate Cursor Jitter in Real-Time Python Computer Vision Apps Using an Exponential Low-Pass Filter</h1>
+        <div class="byline">
+            Written by <strong>Moh Fahri Ramadhan</strong> &bull; <a href="https://fahri-ramadhan23.github.io/porto-baru/">Portfolio</a> &bull; <a href="https://github.com/fahri-ramadhan23">GitHub</a>
+        </div>
+
+        <p>When I built a hands-free accessibility mouse controller in Python using OpenCV and MediaPipe Face Mesh, getting the raw facial landmarks running at 30 FPS was the easy part. Tracking iris landmarks <code>468</code> through <code>477</code> gave me the user's gaze coordinates in a few lines of code.</p>
+
+        <p>The real problem showed up the moment I wired those coordinates directly into <code>pyautogui.moveTo(x, y)</code>. Even when a user held their head completely still in front of a 1080p webcam, CMOS sensor noise and sub-pixel lighting shifts caused the cursor to vibrate constantly across a 15-pixel radius. Trying to click a small button felt like threading a needle on a moving train.</p>
+
+        <p>In this tutorial, we'll look at why raw landmark streams jitter, why a naive moving-average buffer feels sluggish, and how an <strong>Exponential Low-Pass Filter (EMA) paired with a micro-deadzone</strong> solves cursor tremor in under 30 lines of Python.</p>
+
+        <h2>1. Why Sub-Pixel Camera Noise Turns Into 15-Pixel Screen Jumps</h2>
+        <p>MediaPipe Face Mesh estimates 468 3D landmarks independently on every incoming frame. Because each frame is inferred separately from a compressed webcam stream, tiny fluctuations in pixel brightness shift the normalized output coordinates <code>(x, y) &in; [0.0, 1.0]</code> by roughly <code>&plusmn;0.004</code> from frame to frame.</p>
+
+        <p>When you crop an active head-movement bounding box (say, <code>[0.25, 0.75]</code>) and map it onto a <code>1920x1080</code> display using <code>numpy.interp</code>, that tiny <code>0.004</code> sensor wobble gets amplified by a factor of nearly 4,000—resulting in a 15-pixel jump on screen thirty times per second.</p>
+
+        <h2>2. Implementing the First-Order Exponential Low-Pass Filter</h2>
+        <p>Unlike a simple rolling window that weights old frames equally and adds noticeable lag during fast head movements, a first-order exponential low-pass filter blends the new measurement with the previous filtered state using a smoothing factor <code>alpha &in; (0, 1]</code>:</p>
+
+<pre><code>import numpy as np
+
+class GazeCursorFilter:
+    def __init__(self, alpha: float = 0.25, deadzone_px: float = 2.5):
+        if not (0.0 &lt; alpha &lt;= 1.0):
+            raise ValueError("alpha must be between 0.0 (exclusive) and 1.0 (inclusive)")
+        self.alpha = alpha
+        self.deadzone_px = deadzone_px
+        self.prev_x: float | None = None
+        self.prev_y: float | None = None
+
+    def update(self, norm_x: float, norm_y: float, screen_w: int, screen_h: int) -&gt; tuple[int, int]:
+        # Map active normalized camera region to screen resolution
+        target_x = float(np.interp(norm_x, [0.20, 0.80], [0, screen_w]))
+        target_y = float(np.interp(norm_y, [0.25, 0.75], [0, screen_h]))
+
+        if self.prev_x is None or self.prev_y is None:
+            self.prev_x, self.prev_y = target_x, target_y
+            return int(target_x), int(target_y)
+
+        # First-order low-pass filter: y[n] = alpha * x[n] + (1 - alpha) * y[n-1]
+        smooth_x = self.alpha * target_x + (1.0 - self.alpha) * self.prev_x
+        smooth_y = self.alpha * target_y + (1.0 - self.alpha) * self.prev_y
+
+        # Suppress sub-deadzone micro-tremors when the user is focusing on a button
+        delta = np.hypot(smooth_x - self.prev_x, smooth_y - self.prev_y)
+        if delta &lt; self.deadzone_px:
+            return int(self.prev_x), int(self.prev_y)
+
+        self.prev_x, self.prev_y = smooth_x, smooth_y
+        return int(smooth_x), int(smooth_y)</code></pre>
+
+        <h2>3. Tuning Alpha and Gesture Debouncing in Practice</h2>
+        <p>After logging frame telemetry to CSV across multiple webcam setups, three practical lessons stood out:</p>
+        <ul>
+            <li><strong><code>alpha = 0.25</code> is the sweet spot at 30 FPS:</strong> Values above <code>0.50</code> let high-frequency sensor noise bleed through, while values below <code>0.15</code> introduce a "swimming through honey" delay that causes users to overshoot buttons.</li>
+            <li><strong>Pair movement filtering with frame-count gesture debouncing:</strong> If you trigger a left-click from a smile ratio (Euclidean mouth width-to-height ratio <code>&gt; 0.65</code>), require the threshold to hold across <strong>8 consecutive frames</strong> with a <code>0.5s</code> cooldown so talking or blinking doesn't fire accidental clicks.</li>
+            <li><strong>Disable PyAutoGUI's default 100ms pause:</strong> Always set <code>pyautogui.PAUSE = 0</code> and <code>pyautogui.MINIMUM_DURATION = 0</code>; otherwise PyAutoGUI sleeps for 100ms on every <code>moveTo</code> call and caps your entire OpenCV loop at 10 FPS.</li>
+        </ul>
+    </article>
+</body>
+</html>
