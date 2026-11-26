@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampel Dokumentasi Teknis SRS, REST API (OpenAPI 3.0) & Data Vault 2.0 — Moh Fahri Ramadhan</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+        body { background: #0b1120; color: #e2e8f0; line-height: 1.65; padding: 28px 18px; }
+        .container { max-width: 1080px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 1px solid #334155;
+            border-left: 5px solid #38bdf8;
+            border-radius: 14px;
+            padding: 26px 28px;
+            margin-bottom: 24px;
+        }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+        .tag { background: rgba(56, 189, 248, 0.14); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+        .header h1 { font-size: 1.55rem; color: #f8fafc; margin-bottom: 8px; }
+        .meta { color: #94a3b8; font-size: 0.9rem; margin-bottom: 16px; }
+        .btn-bar { display: flex; flex-wrap: wrap; gap: 10px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 16px; border-radius: 8px; font-size: 0.86rem; font-weight: 700;
+            text-decoration: none; transition: 0.2s;
+        }
+        .btn-primary { background: #0284c7; color: #fff; }
+        .btn-sec { background: #1e293b; color: #e2e8f0; border: 1px solid #475569; }
+        .btn:hover { filter: brightness(1.12); }
+
+        .section {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.18rem; color: #38bdf8; margin-bottom: 12px;
+            padding-bottom: 8px; border-bottom: 1px solid #1e293b;
+        }
+        .section h3 { font-size: 1rem; color: #f1f5f9; margin: 16px 0 8px; }
+        .section p { color: #cbd5e1; font-size: 0.92rem; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; }
+        th, td { border: 1px solid #1e293b; padding: 10px 12px; text-align: left; vertical-align: top; }
+        th { background: #1e293b; color: #f8fafc; font-weight: 700; }
+        td { background: #0b1120; color: #cbd5e1; }
+        code, pre { font-family: 'Consolas', 'JetBrains Mono', monospace; }
+        pre {
+            background: #020617; border: 1px solid #1e293b; border-radius: 8px;
+            padding: 14px; overflow-x: auto; font-size: 0.83rem; color: #a5f3fc; margin: 10px 0;
+        }
+        .method-post { background: #059669; color: #fff; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 0.76rem; }
+        .method-get { background: #2563eb; color: #fff; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 0.76rem; }
+        .sev-high { color: #fca5a5; font-weight: 700; }
+        .sev-low { color: #86efac; font-weight: 700; }
+        .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+        .arch-box { background: #020617; border: 1px solid #334155; border-radius: 8px; padding: 14px; }
+        .arch-box h4 { color: #7dd3fc; font-size: 0.9rem; margin-bottom: 6px; }
+        .arch-box p { font-size: 0.83rem; color: #94a3b8; margin: 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="tag-row">
+            <span class="tag">SRS IEEE-830 / ISO-29148</span>
+            <span class="tag">OpenAPI 3.0 / Swagger</span>
+            <span class="tag">Relational DB &amp; Data Vault 2.0</span>
+            <span class="tag">Deployment &amp; Security Audit Report</span>
+        </div>
+        <h1>Dokumen Sampel Teknis: Sistem Integrasi Transaksi &amp; Gudang Data Terpusat (SITGDT v2.1)</h1>
+        <div class="meta">
+            Disusun oleh: <strong>Moh Fahri Ramadhan</strong> — IT Technical Writer &amp; Python/Backend Engineer | Bahasa: Indonesia Baku Teknis
+        </div>
+        <div class="btn-bar">
+            <a href="../files/Sampel_SRS_Dokumentasi_API_dan_DataVault_Moh_Fahri_Ramadhan.docx" class="btn btn-primary">📥 Unduh Dokumen Editable (.DOCX)</a>
+            <a href="../index.html" class="btn btn-sec">⬅ Kembali ke Portofolio Utama</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>1. Spesifikasi Kebutuhan Perangkat Lunak (SRS) &amp; Arsitektur Sistem</h2>
+        <p>Dokumen ini mendefinisikan spesifikasi fungsional, non-fungsional, kontrak antarmuka REST API, pemodelan gudang data <strong>Data Vault 2.0</strong>, prosedur deployment, serta ringkasan evaluasi uji keamanan sebelum serah terima <em>source code</em>.</p>
+        
+        <div class="arch-grid">
+            <div class="arch-box">
+                <h4>1. Lapisan Aplikasi &amp; API</h4>
+                <p>Layanan backend FastAPI/REST dengan autentikasi Bearer JWT (RS256), pembatasan laju (Rate Limiting), dan penjaminan idempotensi transaksi.</p>
+            </div>
+            <div class="arch-box">
+                <h4>2. Basis Data Operasional (OLTP)</h4>
+                <p>PostgreSQL 16 dengan skema ternormalisasi (3NF), indeks komposit pada kolom kunci pencocokan, serta pencatatan audit trail perubahan status.</p>
+            </div>
+            <div class="arch-box">
+                <h4>3. Pipeline ETL &amp; Staging</h4>
+                <p>Ekstraksi inkremental terjadwal menggunakan CDC/timestamp, perhitungan <code>SHA-256 Hash Key</code> deterministik, dan validasi skema sebelum pemuatan.</p>
+            </div>
+            <div class="arch-box">
+                <h4>4. Enterprise Data Vault 2.0</h4>
+                <p>Pemisahan entitas bisnis murni (<strong>Hub</strong>), relasi transaksi (<strong>Link</strong>), dan atribut deskriptif historis (<strong>Satellite</strong>) untuk auditabilitas penuh.</p>
+            </div>
+        </div>
+
+        <h3>Tabel Kebutuhan Fungsional Utama (Kutipan SRS)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Kebutuhan</th>
+                    <th>Modul</th>
+                    <th>Deskripsi Spesifikasi</th>
+                    <th>Kriteria Penerimaan (Acceptance Criteria)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>FR-ING-01</code></td>
+                    <td>Ingesti Transaksi</td>
+                    <td>Sistem menerima payload transaksi harian melalui endpoint REST API terautentikasi dan memvalidasi keunikan <code>idempotency_key</code>.</td>
+                    <td>Request duplikat dalam jendela 24 jam mengembalikan HTTP 200 beserta payload respons awal tanpa menduplikasi baris di tabel <code>trx_orders</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>FR-DV-02</code></td>
+                    <td>Pemodelan Data Vault</td>
+                    <td>Setiap perubahan atribut profil mitra disimpan sebagai baris baru (append-only) pada tabel Satellite dengan penanda <code>load_dts</code> dan <code>hash_diff</code>.</td>
+                    <td>Baris baru hanya disisipkan apabila nilai <code>hash_diff</code> berbeda dari rekaman aktif terakhir; riwayat lama tetap utuh 100%.</td>
+                </tr>
+                <tr>
+                    <td><code>NFR-SEC-03</code></td>
+                    <td>Keamanan API</td>
+                    <td>Seluruh parameter kueri wajib melalui prepared statement / ORM parameterization dan token kedaluwarsa dalam 15 menit.</td>
+                    <td>Pengujian injeksi SQL dan manipulasi payload JWT menghasilkan HTTP 401/422 tanpa kebocoran jejak stack internal.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>2. Dokumentasi Kontrak REST API (Standar OpenAPI 3.0 / Swagger)</h2>
+        <p><span class="method-post">POST</span> <code>/api/v2/reconciliation/submit</code> — Mengirimkan batch transaksi untuk rekonsiliasi dan sinkronisasi ke staging gudang data.</p>
+        <pre>openapi: 3.0.3
+paths:
+  /api/v2/reconciliation/submit:
+    post:
+      summary: Mengirimkan data transaksi tervalidasi ke layanan rekonsiliasi
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: X-Idempotency-Key
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [kode_mitra, nomor_referensi, nominal_idr, waktu_transaksi]
+              properties:
+                kode_mitra: { type: string, example: "MTR-JKT-0042" }
+                nomor_referensi: { type: string, example: "INV-20261126-8891" }
+                nominal_idr: { type: integer, minimum: 1000, example: 2750000 }
+                waktu_transaksi: { type: string, format: date-time, example: "2026-11-26T08:15:00+07:00" }
+      responses:
+        '201':
+          description: Transaksi berhasil divalidasi dan masuk antrean sinkronisasi
+        '409':
+          description: Konflik nomor referensi dengan payload berbeda
+        '422':
+          description: Kegagalan validasi tipe data atau batas nominal</pre>
+    </div>
+
+    <div class="section">
+        <h2>3. Dokumentasi Skema Database &amp; Pemodelan Data Vault 2.0</h2>
+        <p>Untuk menjamin ketertelusuran historis (*full historical auditability*) dan ketahanan terhadap perubahan struktur sistem sumber, lapisan gudang data dirancang menggunakan arsitektur <strong>Data Vault 2.0</strong>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Tabel</th>
+                    <th>Jenis Entitas</th>
+                    <th>Primary / Hash Key</th>
+                    <th>Kolom Utama &amp; Atribut Metadata</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>dv.hub_mitra</code></td>
+                    <td><strong>Hub</strong> (Kunci Bisnis)</td>
+                    <td><code>hk_mitra</code> (CHAR 64)</td>
+                    <td><code>kode_mitra</code> (Business Key), <code>load_dts</code> (TIMESTAMPTZ), <code>record_source</code> (VARCHAR 50)</td>
+                </tr>
+                <tr>
+                    <td><code>dv.hub_tagihan</code></td>
+                    <td><strong>Hub</strong> (Kunci Bisnis)</td>
+                    <td><code>hk_tagihan</code> (CHAR 64)</td>
+                    <td><code>nomor_referensi</code> (Business Key), <code>load_dts</code>, <code>record_source</code></td>
+                </tr>
+                <tr>
+                    <td><code>dv.lnk_pembayaran_mitra</code></td>
+                    <td><strong>Link</strong> (Relasi Transaksi)</td>
+                    <td><code>hk_lnk_pembayaran</code> (CHAR 64)</td>
+                    <td><code>hk_mitra</code> (FK), <code>hk_tagihan</code> (FK), <code>load_dts</code>, <code>record_source</code></td>
+                </tr>
+                <tr>
+                    <td><code>dv.sat_tagihan_status</code></td>
+                    <td><strong>Satellite</strong> (Historis Atribut)</td>
+                    <td><code>(hk_tagihan, load_dts)</code></td>
+                    <td><code>hash_diff</code> (CHAR 64), <code>nominal_idr</code>, <code>status_rekonsiliasi</code>, <code>waktu_transaksi</code>, <code>record_source</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>4. Panduan Deployment, Serah Terima Source Code &amp; Ringkasan Audit Keamanan</h2>
+        <h3>A. Prosedur Konfigurasi &amp; Deployment Layanan</h3>
+        <pre># 1. Verifikasi variabel lingkungan wajib (.env.production)
+cp .env.example .env.production &amp;&amp; chmod 600 .env.production
+
+# 2. Jalankan migrasi skema database relasional &amp; objek Data Vault
+alembic upgrade head
+
+# 3. Bangun image kontainer dan jalankan health-check layanan
+docker compose -f docker-compose.prod.yml up -d --build
+curl -fsS http://127.0.0.1:8000/healthz</pre>
+
+        <h3>B. Ringkasan Eksekutif Evaluasi Pengujian &amp; Penetration Test</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kode Temuan</th>
+                    <th>Kategori OWASP API</th>
+                    <th>Temuan Awal saat Uji Keamanan</th>
+                    <th>Tindakan Remediasi &amp; Status Akhir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>PT-API-01</code></td>
+                    <td>API4: Unrestricted Resource Consumption</td>
+                    <td>Endpoint ekspor laporan belum menerapkan batas maksimum rentang tanggal per kueri.</td>
+                    <td><span class="sev-low">CLOSED / TERATASI</span> — Ditambahkan validasi rentang maksimal 31 hari dan paginasi kursor (maks. 500 baris/halaman).</td>
+                </tr>
+                <tr>
+                    <td><code>PT-API-02</code></td>
+                    <td>API8: Security Misconfiguration</td>
+                    <td>Header <code>Server</code> dan detail versi framework tampil pada respons galat 500.</td>
+                    <td><span class="sev-low">CLOSED / TERATASI</span> — Disembunyikan pada reverse proxy Nginx (<code>server_tokens off</code>) dan handler pengecualian global.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
