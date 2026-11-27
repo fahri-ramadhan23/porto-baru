@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Terjemahan Teknis EN–ID, Lokalisasi SaaS &amp; MTPE — Moh Fahri Ramadhan</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+        body { background: #0b1120; color: #e2e8f0; line-height: 1.6; padding: 28px 18px; }
+        .wrap { max-width: 1080px; margin: 0 auto; }
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 1px solid #334155; border-left: 5px solid #10b981;
+            border-radius: 14px; padding: 26px; margin-bottom: 22px;
+        }
+        .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+        .badge { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.35); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+        .hero h1 { font-size: 1.5rem; color: #f8fafc; margin-bottom: 8px; }
+        .meta { color: #94a3b8; font-size: 0.9rem; margin-bottom: 14px; }
+        .btn { display: inline-block; background: #059669; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.85rem; padding: 9px 16px; border-radius: 8px; margin-right: 8px; }
+        .btn-sec { background: #1e293b; border: 1px solid #475569; }
+        .section { background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 22px; margin-bottom: 20px; }
+        .section h2 { font-size: 1.15rem; color: #34d399; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #1e293b; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 10px; }
+        th, td { border: 1px solid #1e293b; padding: 11px 12px; text-align: left; vertical-align: top; }
+        th { background: #1e293b; color: #f8fafc; }
+        td { background: #0b1120; color: #cbd5e1; }
+        .bad { color: #fca5a5; }
+        .good { color: #86efac; font-weight: 600; }
+        code { background: #1e293b; padding: 2px 5px; border-radius: 4px; color: #7dd3fc; font-family: Consolas, monospace; font-size: 0.82rem; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="hero">
+        <div class="badges">
+            <span class="badge">EN &rarr; ID Technical Localization</span>
+            <span class="badge">ISO 18587 Full MTPE</span>
+            <span class="badge">SaaS UI / Fintech / Developer Docs</span>
+            <span class="badge">Tag &amp; Placeholder Preservation</span>
+        </div>
+        <h1>Sampel Kerja: Penerjemahan Teknis Inggris–Indonesia, Lokalisasi UI SaaS &amp; Post-Editing (MTPE)</h1>
+        <div class="meta">Penerjemah &amp; Editor Teknis: <strong>Moh Fahri Ramadhan</strong> | Spesialisasi: Perangkat Lunak (IT), Fintech, Dokumentasi API, &amp; Bisnis</div>
+        <a href="../files/CV_Fahri_Ramadhan_Penulisan_dan_Translator.pdf" class="btn">📥 Unduh CV Penerjemah &amp; Editor (PDF)</a>
+        <a href="../index.html" class="btn btn-sec">⬅ Portofolio Utama</a>
+    </div>
+
+    <div class="section">
+        <h2>1. Perbandingan Terjemahan Mesin Mentah vs Hasil Human Post-Editing (Full MTPE)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:28%">Teks Sumber (English Source)</th>
+                    <th style="width:30%">Terjemahan Mesin Mentah (Raw MT — Kaku/Keliru)</th>
+                    <th style="width:42%">Hasil Suntingan Manusia (Moh Fahri Ramadhan — Natural &amp; Akurat)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Your API key `{key_name}` has been revoked due to a suspected credential leak. Generate a new key in Settings &gt; Developer.</code></td>
+                    <td class="bad">Kunci API Anda `{key_name}` telah dicabut karena dugaan kebocoran kredensial. Hasilkan kunci baru di Pengaturan &gt; Pengembang.</td>
+                    <td class="good">Kunci API <code>{key_name}</code> telah dinonaktifkan karena terindikasi mengalami kebocoran akses. Buat kunci baru melalui menu <strong>Pengaturan &gt; Developer</strong>.<br><small style="color:#94a3b8">(Catatan QA: Placeholder `{key_name}` dipertahankan utuh; istilah "Buat kunci baru" jauh lebih lazim pada UI ketimbang terjemahan harfiah "Hasilkan").</small></td>
+                </tr>
+                <tr>
+                    <td><code>Idempotent requests prevent duplicate charges when a customer's network drops mid-checkout.</code></td>
+                    <td class="bad">Permintaan idempoten mencegah biaya duplikat ketika jaringan pelanggan jatuh di tengah pembayaran.</td>
+                    <td class="good">Mekanisme <em>request</em> idempoten mencegah pendebitan ganda apabila koneksi internet pelanggan terputus saat proses pembayaran berlangsung.<br><small style="color:#94a3b8">(Catatan QA: "duplicate charges" dalam konteks payment gateway adalah "pendebitan/penagihan ganda", bukan "biaya duplikat").</small></td>
+                </tr>
+                <tr>
+                    <td><code>We couldn't sync `{count}` records because the target sheet is locked by another collaborator.</code></td>
+                    <td class="bad">Kami tidak dapat menyinkronkan `{count}` catatan karena lembar target dikunci oleh kolaborator lain.</td>
+                    <td class="good">Gagal menyinkronkan <code>{count}</code> baris data karena lembar kerja tujuan sedang dikunci oleh rekan kerja lain.<br><small style="color:#94a3b8">(Catatan QA: Menghindari pronomina kaku "Kami" pada pesan galat UI mikro; "records" pada spreadsheet diterjemahkan tepat menjadi "baris data", bukan "catatan").</small></td>
+                </tr>
+                <tr>
+                    <td><code>Settlement funds will be disbursed to your registered bank account within T+1 business days after reconciliation.</code></td>
+                    <td class="bad">Dana penyelesaian akan dicairkan ke rekening bank terdaftar Anda dalam hari kerja T+1 setelah rekonsiliasi.</td>
+                    <td class="good">Dana pelimpahan transaksi (<em>settlement</em>) akan dicairkan ke rekening bank terdaftar paling lambat H+1 hari kerja setelah proses rekonsiliasi selesai.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>2. Standar Glosarium Konsistensi Istilah (Termbase EN–ID)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Istilah Sumber (EN)</th>
+                    <th>Padanan Baku Terpilih (ID)</th>
+                    <th>Hindari Terjemahan Harfiah</th>
+                    <th>Konteks Domain</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Rate Limiting</td><td>Pembatasan Laju Permintaan</td><td>Pembatasan Tarif</td><td>API &amp; Backend Security</td></tr>
+                <tr><td>Grace Period</td><td>Masa Tenggang</td><td>Periode Rahmat / Kemurahan</td><td>Billing &amp; Langganan SaaS</td></tr>
+                <tr><td> Sandbox Environment</td><td>Lingkungan Uji Coba (Sandbox)</td><td>Lingkungan Kotak Pasir</td><td>Integrasi Payment Gateway</td></tr>
+                <tr><td>Throughput</td><td>Kapasitas Olah Data (Throughput)</td><td>Daya Lewat</td><td>Rekayasa Sistem &amp; Database</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
